@@ -1,24 +1,18 @@
 {
-  "name": "graphql-mysql-crud-ts",
+  "name": "actores_pro",
   "version": "1.0.0",
-  "description": "GraphQL &amp; MySQL CRUD con Nodejs, Typescript y TypeORM",
+  "description": "proyecto pa dani ",
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev src/index.ts",
     "build": "tsc -p .",
     "start": "node dist/index.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/atuxlife/graphql-mysql-crud-ts.git"
-  },
+ 
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/atuxlife/graphql-mysql-crud-ts/issues"
-  },
-  "homepage": "https://github.com/atuxlife/graphql-mysql-crud-ts#readme",
+  
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",

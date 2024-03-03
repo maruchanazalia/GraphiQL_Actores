@@ -66,14 +66,14 @@ export const UPDATE_USER = {
 
         if(!userFound) return {
             success: false,
-            message: "User not found"
+            message: "Usuario no encontrado"
         };
 
         const isMatch = await bcrypt.compare(input.oldpassw, userFound.password);
 
         if(!isMatch) return {
             success: false,
-            message: "Old password doesn't match"
+            message: "contra inconrrecta"
         };
 
         const newPassword = await bcrypt.hash(input.newpassw, 10);
@@ -83,14 +83,47 @@ export const UPDATE_USER = {
         if (res.affected === 1) {
             return {
                 success: true,
-                message: "User updated successfully"
+                message: "Usuario entro con exito"
             };
         } else {
             return {
                 success: false,
-                message: "Error updating user"
+                message: "Eroor al cargar usuario"
             };
         }
 
+    }
+};
+
+export const LOGIN_USER = {
+    type: MessageType,
+    args: {
+        username: { type: GraphQLString },
+        password: { type: GraphQLString }
+    },
+    async resolve(_: any, { username, password }: any) {
+        const userFound = await Users.findOne({ where: { username } });
+
+
+        if (!userFound) {
+            return {
+                success: false,
+                message: "Usuario no encontrado"
+            };
+        }
+
+        const isMatch = await bcrypt.compare(password, userFound.password);
+
+        if (!isMatch) {
+            return {
+                success: false,
+                message: "Contraseña incorrecta"
+            };
+        }
+
+        return {
+            success: true,
+            message: "Inicio de sesión exitoso"
+        };
     }
 };
